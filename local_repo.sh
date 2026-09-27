@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Verify Root Permissions.
+if [ "$EUID" -ne 0 ]; then
+    echo "Run the command with 'sudo'."
+    exit 1
+fi
+
 clear; echo
 
 cat << "EOF"
@@ -14,11 +20,7 @@ cat << "EOF"
                                                                                                                                                                                                                                
 EOF
 
-# Verify Root Permissions.
-if [ "$EUID" -ne 0 ]; then
-    echo "Run the command with 'sudo'."
-    exit 1
-fi
+sleep 2
 
 # Repository folder path
 REPO_DIR="/srv/repo"
