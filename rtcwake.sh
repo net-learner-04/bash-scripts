@@ -1,12 +1,12 @@
 #!/bin/bash
 
-clear; echo
-
 # Verify Root Permissions.
 if [ "$EUID" -ne 0 ]; then
     echo "Run as root."
     exit 1
 fi
+
+clear; echo
 
 cat << "EOF"                                                   
  ____    __           __      __            __                
@@ -18,6 +18,8 @@ cat << "EOF"
     \/_/\/ /\/__/\/____/ '\/__//__/  \/__/\/_/ \/_/\/_/\/____/
                                                                                                                                          
 EOF
+
+sleep 2
 
 CURRENT_DATE=$(date +"%Y-%m-%d")
 CURRENT_TIME=$(date +"%H:%M:%S")
