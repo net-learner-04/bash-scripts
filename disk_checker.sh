@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Verify Root Permissions.
+if [ "$EUID" -ne 0 ]; then
+    echo "Run as root."
+    exit 1
+fi
+
 clear; echo
 
 cat << "EOF"
@@ -15,11 +21,7 @@ cat << "EOF"
 EOF
 echo; echo
 
-# Verify Root Permissions.
-if [ "$EUID" -ne 0 ]; then
-    echo "Run as root."
-    exit 1
-fi
+sleep 2
 
 # Iterate over all NVMe/SATA disks detected by smartctl and check their SMART health attributes.
 for dev in $(lsblk -n -d -o NAME | grep -E '^nvme|^sd|^hd' | sed 's#^#/dev/#'); do
