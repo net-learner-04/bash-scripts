@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Verify Root Permissions.
+if [ "$EUID" -ne 0 ]; then
+    echo "Run as root."
+    exit 1
+fi
+
 clear; echo
 
 cat << "EOF"
@@ -11,12 +17,7 @@ cat << "EOF"
                                                      
 EOF
 
-# Verify Root Permissions.
-if [ "$EUID" -ne 0 ]
-then
-    echo "Run as root."
-    exit 1
-fi
+sleep 2
 
 # Show a list of currently connected block disks.
 echo "=== List of disks on the current system ==="; echo
