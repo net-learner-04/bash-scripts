@@ -6,12 +6,12 @@
 # sudo semanage fcontext -a -t bin_t /usr/bin/tmux
 # sudo restorecon -v /usr/bin/tmux
 
-clear; echo
-
 if [ "$EUID" -ne 0 ]; then
     echo "Run as root."
     exit 1
 fi
+
+clear; echo
 
 cat << "EOF"
  ______  ___ ___  __ __  __ __                                
@@ -31,6 +31,8 @@ cat << "EOF"
         |__|\_||_____||___,_||____|\___|  |__|  |_____||__|\_|
                                                               
 EOF
+
+sleep 2
 
 read -r -p "Enter the absolute path of the script to be executed: " FILE_PATH; echo
 
